@@ -14,3 +14,5 @@ git pull https://github.com/csc-training/summerschool.git
 - [x] Have fun!
 
 First time trying to use this, seems cool
+
+and more
