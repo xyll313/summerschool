@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "pngwriter.h"
 
-#define NX 258
-#define NY 258
+#define NX 20
+#define NY 20
 
 #define DX 0.01
 #define DY 0.01
@@ -11,7 +12,7 @@
 int main(void)
 {
     int i, j, error_code;
-    double array[NX][NY];
+   double array[NX][NY];
     double laplacian[NX][NY];
 
     // First initalize the inner values to zero
@@ -38,14 +39,31 @@ int main(void)
         array[NX - 1][j] = -25.0;
     }
 
+for (i=1;i<(NX-2);i++){
+	for(j=1;j<(NY-2);j++){
+		laplacian[i][j]=(array[i-1][j]-2*array[i][j]+array[i+1][j])/(DX*DX)+(array[i][j-1]-2*array[i][j]+array[i][j+1])/(DY*DY);
+			 }
+		      }
+
+for (i=1;i<(NX-1);i++){
+        for(j=1;j<(NY-1);j++){
+		printf("%f ", laplacian[i][j]);
+}
+	printf("\n");
+}
+
     // Evaluate the Laplacian
     // *INDENT-OFF*
-#error Add the missing part
+//error Add the missing part
+
+
  
     // *INDENT-ON*
 
     // Call the png writer routine
-    error_code = save_png((double *) laplacian, NX, NY, "datastructures_functions_heat-a_b.png", 'c');
+
+
+//    error_code = save_png((double *) laplacian, NX, NY, "datastructures_functions_heat-a_b.png", 'c');
 
     if (error_code == 0) {
         printf("Wrote the output file datastructures_functions_heat-a_b.png\n");
